@@ -10,21 +10,68 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
     <style>
-      .logo span{
-        padding: 3px 12px;
+      .logo span {
+        padding: 0px 7px;
         background-color: white;
-        margin-right: 4px;
-        color: red;
-        font-size: 24px;
+        margin-right: 5px;
+        color: #0ea5e9;
+        font-size: 20px;
+      }
+      .noto-serif {
+        font-family: "Noto Serif Bengali", serif;
+        font-weight: 500;
+      }
+      #nav li::after {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 0%;
+        height: 4px;
+        background-color: #0ea5e9;
+        transition: all 0.3s ease;
+      }
+      #nav li:hover::after {
+        width: 100%;
+      }
+      @media (max-width: 768px) {
+        #nav li {
+          padding: 0 10px;
+        }
+        #nav li::after {
+          display: none;
+        }
       }
     </style>
   </head>
   <body>
-    <header>
-      <div class="bg-red-500 px-4 md:px-10 lg:px-20">
-        <div class="logo container text-3xl font-bold py-4 text-white"><span>B</span><span>S</span> NEWS</div>
+    <nav>
+      <div class="bg-sky-500 px-4 md:px-10 lg:px-20">
+        <div
+          class="logo container mx-auto text-2xl font-bold py-4 text-white flex justify-between items-center"
+        >
+          <p><span>B</span><span>D</span>NEWS</p>
+          <p class="md:hidden">
+            <i onclick="showMenu()" id="menu-bar" class="fa-solid fa-bars"></i>
+          </p>
+        </div>
       </div>
-    </header>
+      <ul
+        id="nav"
+        class="container mx-auto absolute md:static opacity-0 md:opacity-100 top-10 pointer-events-none md:pointer-events-auto px-4 md:px-10 lg:px-20 md:flex gap-4 lg:gap-8 mt-2 noto-serif text-xl bg-white shadow transition-all duration-300"
+      ></ul>
+    </nav>
+
+    <script src="./index.js"></script>
   </body>
 </html>
