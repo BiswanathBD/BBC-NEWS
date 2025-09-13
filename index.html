@@ -68,9 +68,20 @@
       </div>
       <ul
         id="nav"
-        class="container mx-auto absolute md:static opacity-0 md:opacity-100 top-10 pointer-events-none md:pointer-events-auto px-4 md:px-10 lg:px-20 md:flex gap-4 lg:gap-8 mt-2 noto-serif text-xl bg-white shadow transition-all duration-300"
+        class="container mx-auto absolute md:static opacity-0 md:opacity-100 top-10 pointer-events-none md:pointer-events-auto px-4 md:px-10 lg:px-20 md:flex gap-4 lg:gap-8 mt-2 noto-serif text-xl bg-white shadow transition-all duration-300 md:border-l-none"
       ></ul>
     </nav>
+    <section class="px-4 md:px-10 lg:px-20 my-4 noto-serif">
+      <h3 id="category-name" class="font-bold text-2xl text-sky-500 mb-4">
+        Popular NEWS
+      </h3>
+      <div id="news-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center">
+        <div class="border border-sky-300 p-4 rounded-lg">
+          <!-- load news from api -->
+          
+        </div>
+      </div>
+    </section>
 
     <script src="./index.js"></script>
   </body>
