@@ -9,13 +9,21 @@
       rel="stylesheet"
       type="text/css"
     />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@100..900&display=swap"
       rel="stylesheet"
     />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -25,7 +33,7 @@
         padding: 0px 7px;
         background-color: white;
         margin-right: 5px;
-        color: #0ea5e9;
+        color: red;
         font-size: 20px;
       }
       .noto-serif {
@@ -38,10 +46,11 @@
         margin: 0 auto;
         width: 0%;
         height: 4px;
-        background-color: #0ea5e9;
+        background-color: red;
         transition: all 0.3s ease;
       }
-      #nav li:hover::after {
+      #nav li:hover::after,
+      #nav li.active::after {
         width: 100%;
       }
       @media (max-width: 768px) {
@@ -56,11 +65,11 @@
   </head>
   <body>
     <nav>
-      <div class="bg-sky-500 px-4 md:px-10 lg:px-20">
+      <div class="bg-red-500 px-4 md:px-10 lg:px-20">
         <div
           class="logo container mx-auto text-2xl font-bold py-4 text-white flex justify-between items-center"
         >
-          <p><span>B</span><span>D</span>NEWS</p>
+          <p><span>B</span><span>B</span><span>C</span>NEWS</p>
           <p class="md:hidden">
             <i onclick="showMenu()" id="menu-bar" class="fa-solid fa-bars"></i>
           </p>
@@ -72,14 +81,14 @@
       ></ul>
     </nav>
     <section class="px-4 md:px-10 lg:px-20 my-4 noto-serif">
-      <h3 id="category-name" class="font-bold text-2xl text-sky-500 mb-4">
+      <h3 id="category-name" class="font-bold text-2xl text-red-500 mb-4">
         Popular NEWS
       </h3>
-      <div id="news-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center">
-        <div class="border border-sky-300 p-4 rounded-lg">
-          <!-- load news from api -->
-          
-        </div>
+      <div
+        id="news-container"
+        class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center"
+      >
+        <!-- load news from api -->
       </div>
     </section>
 

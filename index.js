@@ -9,7 +9,7 @@ const loadNav = (categories) => {
   categories.forEach((category) => {
     const navItem = document.createElement("li");
     navItem.classList.add(
-      "text-sky-500",
+      "text-red-500",
       "cursor-pointer",
       "my-2",
       "transition-all"
@@ -17,44 +17,84 @@ const loadNav = (categories) => {
     navItem.innerText = `${category.title}`;
     nav.append(navItem);
     navItem.addEventListener("click", function () {
-      try {
-        fetch(`https://news-api-fs.vercel.app/api/categories/${category.id}`)
-          .then((res) => res.json())
-          .then((newsCategory) => loadNewsCategory(newsCategory.articles));
-      } catch (error) {
-        console.log(error);
-      }
+      const selectedCategories = document.querySelectorAll("#nav li");
+      selectedCategories.forEach((nav) => {
+        nav.classList.remove("active");
+      });
+      navItem.classList.add("active");
 
-      const loadNewsCategory = (newsCategory) => {
-        const newsContainer = getById("news-container");
-        newsCategory.forEach((news) => {});
+      getById("category-name").innerText = "";
+      const newsContainer = getById("news-container");
+      newsContainer.innerHTML = `
+<div class="text-red-500 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+`;
+
+      const loadNewsCategory = async () => {
+        try {
+          const res = await fetch(
+            `https://news-api-fs.vercel.app/api/categories/${category.id}`
+          );
+          const data = await res.json();
+          const newsByCategory = data.articles;
+          newsContainer.innerHTML = "";
+          if (!newsByCategory || newsByCategory.length === 0) {
+            newsContainer.innerHTML = `
+            <div class="col-span-full text-center mt-16 text-xl text-gray-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i> No data found</div>
+            `;
+            return;
+          }
+          newsByCategory.forEach((news) => {
+            const newsBox = document.createElement("div");
+            newsBox.classList.add(
+              "border",
+              "border-red-300",
+              "p-4",
+              "rounded-xl"
+            );
+            newsBox.innerHTML = `
+      <a href="${news.link}.">
+            <p class="text-sm text-gray-400">${news.scrapedAt}</p>
+            <h4 class="text-2xl font-semibold mt-4 text-red-500">${news.title}</h4>
+          </a>
+      `;
+            newsContainer.append(newsBox);
+          });
+        } catch (error) {
+          console.error("Error fetching news:", error);
+        }
       };
+      loadNewsCategory();
     });
   });
 };
 
 // popular news load
+const newsContainer = getById("news-container");
+newsContainer.innerHTML = `
+<div class="text-red-500 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+`;
+
 const loadPopularNews = async () => {
   try {
     const res = await fetch("https://news-api-fs.vercel.app/api/popular");
     const data = await res.json();
+
     const popularNews = data.articles;
-    const newsContainer = getById("news-container");
     newsContainer.innerHTML = "";
 
     popularNews.forEach((news) => {
       const newsBox = document.createElement("div");
-      newsBox.classList.add("border", "border-sky-300", "p-4", "rounded-xl");
+      newsBox.classList.add("border", "border-red-300", "p-4", "rounded-xl");
       newsBox.innerHTML = `
-      <a href="${news.link}">
-            <p class="text-sm text-gray-400">${news.scrapedAt}</p>
-            <h4 class="text-2xl font-semibold mt-4 text-sky-500">${news.title}</h4>
-          </a>
+      <a href="${news.link}.">
+      <p class="text-sm text-gray-400">${news.scrapedAt}</p>
+      <h4 class="text-2xl font-semibold mt-4 text-red-500">${news.title}</h4>
+      </a>
       `;
       newsContainer.append(newsBox);
     });
   } catch (error) {
-    console.error("Error fetching popular news:", error);
+    console.error("Error fetching news:", error);
   }
 };
 loadPopularNews();
@@ -65,7 +105,7 @@ const showMenu = () => {
   const navItems = document.querySelectorAll("#nav li");
   navItems.forEach((navItem) => {
     navItem.classList.toggle("hover:border-l-4");
-    navItem.classList.toggle("border-sky-500");
+    navItem.classList.toggle("border-red-500");
     navItem.classList.add("md:border-none");
   });
   nav.classList.toggle("pointer-events-none");
