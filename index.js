@@ -52,8 +52,8 @@ const loadNav = (categories) => {
               "rounded-xl"
             );
             newsBox.innerHTML = `
-      <a href="${news.link}.">
-            <p class="text-sm text-gray-400">${news.scrapedAt}</p>
+      <a href="${news.link}">
+            <p class="text-sm text-gray-400">${news.time}</p>
             <h4 class="text-2xl font-semibold mt-4 text-red-500">${news.title}</h4>
           </a>
       `;
@@ -86,7 +86,7 @@ const loadPopularNews = async () => {
       const newsBox = document.createElement("div");
       newsBox.classList.add("border", "border-red-300", "p-4", "rounded-xl");
       newsBox.innerHTML = `
-      <a href="${news.link}.">
+      <a href="${news.link}">
       <p class="text-sm text-gray-400">${news.scrapedAt}</p>
       <h4 class="text-2xl font-semibold mt-4 text-red-500">${news.title}</h4>
       </a>
