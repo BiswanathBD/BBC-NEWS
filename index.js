@@ -17,6 +17,7 @@ const loadNav = (categories) => {
     navItem.innerText = `${category.title}`;
     nav.append(navItem);
     navItem.addEventListener("click", function () {
+      showMenu();
       const selectedCategories = document.querySelectorAll("#nav li");
       selectedCategories.forEach((nav) => {
         nav.classList.remove("active");
@@ -39,7 +40,7 @@ const loadNav = (categories) => {
           newsContainer.innerHTML = "";
           if (!newsByCategory || newsByCategory.length === 0) {
             newsContainer.innerHTML = `
-            <div class="col-span-full text-center mt-16 text-xl text-gray-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i> No data found</div>
+            <div class="col-span-full text-center my-20 text-xl text-gray-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i> No data found</div>
             `;
             return;
           }
@@ -49,7 +50,12 @@ const loadNav = (categories) => {
               "border",
               "border-red-300",
               "p-4",
-              "rounded-xl"
+              "rounded-xl",
+              "transition-all",
+              "hover:scale-[1.03]",
+              "shadow-xl",
+              "shadow-red-100",
+              "bg-white"
             );
             newsBox.innerHTML = `
       <a href="${news.link}">
@@ -71,7 +77,7 @@ const loadNav = (categories) => {
 // popular news load
 const newsContainer = getById("news-container");
 newsContainer.innerHTML = `
-<div class="text-red-500 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+<div class="text-red-500 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
 
 const loadPopularNews = async () => {
@@ -84,7 +90,17 @@ const loadPopularNews = async () => {
 
     popularNews.forEach((news) => {
       const newsBox = document.createElement("div");
-      newsBox.classList.add("border", "border-red-300", "p-4", "rounded-xl");
+      newsBox.classList.add(
+        "border",
+        "border-red-300",
+        "p-4",
+        "rounded-xl",
+        "transition-all",
+        "hover:scale-[1.03]",
+        "shadow-xl",
+        "shadow-red-100",
+        "bg-white"
+      );
       newsBox.innerHTML = `
       <a href="${news.link}">
       <p class="text-sm text-gray-400">${news.scrapedAt}</p>
