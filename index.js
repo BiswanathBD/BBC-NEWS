@@ -8,11 +8,7 @@ const loadNav = (categories) => {
   const nav = getById("nav");
   categories.forEach((category) => {
     const navItem = document.createElement("li");
-    navItem.classList.add(
-      "cursor-pointer",
-      "my-2",
-      "transition-all"
-    );
+    navItem.classList.add("cursor-pointer", "my-1", "transition-all");
     navItem.innerText = `${category.title}`;
     nav.append(navItem);
     navItem.addEventListener("click", function () {
@@ -39,7 +35,7 @@ const loadNav = (categories) => {
           newsContainer.innerHTML = "";
           if (!newsByCategory || newsByCategory.length === 0) {
             newsContainer.innerHTML = `
-            <div class="col-span-full text-center my-20 text-xl text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i> No data found</div>
+            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
             `;
             return;
           }
@@ -127,6 +123,6 @@ const showMenu = () => {
   });
   nav.classList.toggle("pointer-events-none");
   nav.classList.toggle("opacity-0");
-  nav.classList.toggle("top-14");
-  nav.classList.toggle("top-10");
+  nav.classList.toggle("translate-y-[-12px]");
+  nav.classList.toggle("translate-y-[-8px]");
 };
