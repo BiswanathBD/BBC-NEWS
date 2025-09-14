@@ -9,7 +9,6 @@ const loadNav = (categories) => {
   categories.forEach((category) => {
     const navItem = document.createElement("li");
     navItem.classList.add(
-      "text-red-500",
       "cursor-pointer",
       "my-2",
       "transition-all"
@@ -27,7 +26,7 @@ const loadNav = (categories) => {
       getById("category-name").innerText = "";
       const newsContainer = getById("news-container");
       newsContainer.innerHTML = `
-<div class="text-red-500 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+<div class="text-red-700 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
 
       const loadNewsCategory = async () => {
@@ -40,27 +39,25 @@ const loadNav = (categories) => {
           newsContainer.innerHTML = "";
           if (!newsByCategory || newsByCategory.length === 0) {
             newsContainer.innerHTML = `
-            <div class="col-span-full text-center my-20 text-xl text-gray-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i> No data found</div>
+            <div class="col-span-full text-center my-20 text-xl text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i> No data found</div>
             `;
             return;
           }
           newsByCategory.forEach((news) => {
             const newsBox = document.createElement("div");
             newsBox.classList.add(
-              "border",
-              "border-red-300",
               "p-4",
               "rounded-xl",
               "transition-all",
-              "hover:scale-[1.03]",
-              "shadow-xl",
+              "hover:scale-[1.05]",
+              "shadow-lg",
               "shadow-red-100",
               "bg-white"
             );
             newsBox.innerHTML = `
       <a href="${news.link}">
-            <p class="text-sm text-gray-400">${news.time}</p>
-            <h4 class="text-2xl font-semibold mt-4 text-red-500">${news.title}</h4>
+            <p class="text-sm text-red-300">${news.time}</p>
+            <h4 class="text-2xl font-semibold mt-4">${news.title}</h4>
           </a>
       `;
             newsContainer.append(newsBox);
@@ -77,7 +74,7 @@ const loadNav = (categories) => {
 // popular news load
 const newsContainer = getById("news-container");
 newsContainer.innerHTML = `
-<div class="text-red-500 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+<div class="text-red-700 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
 
 const loadPopularNews = async () => {
@@ -91,20 +88,24 @@ const loadPopularNews = async () => {
     popularNews.forEach((news) => {
       const newsBox = document.createElement("div");
       newsBox.classList.add(
-        "border",
-        "border-red-300",
         "p-4",
         "rounded-xl",
         "transition-all",
         "hover:scale-[1.03]",
-        "shadow-xl",
+        "shadow-lg",
         "shadow-red-100",
         "bg-white"
       );
       newsBox.innerHTML = `
       <a href="${news.link}">
-      <p class="text-sm text-gray-400">${news.scrapedAt}</p>
-      <h4 class="text-2xl font-semibold mt-4 text-red-500">${news.title}</h4>
+      <p class="text-sm text-red-300">${new Date(
+        news.scrapedAt
+      ).toLocaleDateString("bn-BD", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}</p>
+      <h4 class="text-2xl font-semibold mt-4">${news.title}</h4>
       </a>
       `;
       newsContainer.append(newsBox);
@@ -121,7 +122,7 @@ const showMenu = () => {
   const navItems = document.querySelectorAll("#nav li");
   navItems.forEach((navItem) => {
     navItem.classList.toggle("hover:border-l-4");
-    navItem.classList.toggle("border-red-500");
+    navItem.classList.toggle("border-red-700");
     navItem.classList.add("md:border-none");
   });
   nav.classList.toggle("pointer-events-none");
