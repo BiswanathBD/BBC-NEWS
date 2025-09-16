@@ -126,3 +126,28 @@ const showMenu = () => {
   nav.classList.toggle("translate-y-[-12px]");
   nav.classList.toggle("translate-y-[-8px]");
 };
+
+// mouse hover
+const hoverCircle = getById("hover-circle");
+let mouseX = 0,
+  mouseY = 0;
+let circleX = 0,
+  circleY = 0;
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+  hoverCircle.style.opacity = "100";
+});
+document.addEventListener("mouseleave", () => {
+  hoverCircle.style.opacity = "0";
+});
+
+function move() {
+  circleX += mouseX - circleX;
+  circleY += mouseY - circleY;
+  hoverCircle.style.left = circleX + "px";
+  hoverCircle.style.top = circleY + "px";
+  requestAnimationFrame(move);
+}
+move();

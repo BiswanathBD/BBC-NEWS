@@ -71,6 +71,18 @@
         color: #dc2626;
         font-size: 40px;
       }
+      #hover-circle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 0, 0, 0.25);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 100;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: all 0.1s ease;
+      }
     </style>
   </head>
   <body>
@@ -126,6 +138,9 @@
         <p>Dhaka, Bangladesh 1000</p>
       </div>
     </footer>
+
+    <!-- mouse move hover -->
+    <div id="hover-circle"></div>
 
     <script src="./index.js"></script>
   </body>
