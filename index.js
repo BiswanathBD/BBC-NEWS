@@ -6,11 +6,15 @@ fetch("https://news-api-fs.vercel.app/api/categories")
 
 const loadNav = (categories) => {
   const nav = getById("nav");
+
   categories.forEach((category) => {
     const navItem = document.createElement("li");
     navItem.classList.add("cursor-pointer", "my-4", "transition-all");
     navItem.innerText = `${category.title}`;
     nav.append(navItem);
+    const firstItem = nav.querySelector("li");
+    firstItem.classList.add("active");
+
     navItem.addEventListener("click", function () {
       showMenu();
       const selectedCategories = document.querySelectorAll("#nav li");
@@ -19,12 +23,10 @@ const loadNav = (categories) => {
       });
       navItem.classList.add("active");
 
-      getById("category-name").innerText = "";
       const newsContainer = getById("news-container");
       newsContainer.innerHTML = `
 <div class="text-red-700 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
-
       const loadNewsCategory = async () => {
         try {
           const res = await fetch(
@@ -68,23 +70,23 @@ const loadNav = (categories) => {
   });
 };
 
-// popular news load
+// Main page news load
 const newsContainer = getById("news-container");
 newsContainer.innerHTML = `
 <div class="text-red-700 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
 
-const loadPopularNews = async () => {
+const loadNews = async () => {
   try {
-    const res = await fetch("https://news-api-fs.vercel.app/api/popular");
+    const res = await fetch(
+      "https://news-api-fs.vercel.app/api/categories/main"
+    );
     const data = await res.json();
 
-    const popularNews = data.articles;
+    const Newses = data.articles;
     newsContainer.innerHTML = "";
 
-    popularNews.forEach((news) => {
-      console.log(news);
-
+    Newses.forEach((news) => {
       const newsBox = document.createElement("div");
       newsBox.classList.add(
         "p-4",
@@ -97,7 +99,9 @@ const loadPopularNews = async () => {
       );
       newsBox.innerHTML = `
       <a href="${news.link}">
-      <div class="mb-2"><img class='rounded-md h-full object-cover' src="$" alt=""></div>
+      <div class="mb-2"><img class='rounded-md h-full object-cover' src="${
+        news.image.srcset[8].url
+      }" alt=""></div>
       <p class="text-sm text-red-300">${new Date(
         news.scrapedAt
       ).toLocaleDateString("bn-BD", {
@@ -115,7 +119,7 @@ const loadPopularNews = async () => {
     console.error("Error fetching news:", error);
   }
 };
-loadPopularNews();
+loadNews();
 
 // mobile nav functionality
 const showMenu = () => {
