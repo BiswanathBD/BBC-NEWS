@@ -8,7 +8,7 @@ const loadNav = (categories) => {
   const nav = getById("nav");
   categories.forEach((category) => {
     const navItem = document.createElement("li");
-    navItem.classList.add("cursor-pointer", "my-1", "transition-all");
+    navItem.classList.add("cursor-pointer", "my-4", "transition-all");
     navItem.innerText = `${category.title}`;
     nav.append(navItem);
     navItem.addEventListener("click", function () {
