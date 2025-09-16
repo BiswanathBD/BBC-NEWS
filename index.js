@@ -52,8 +52,9 @@ const loadNav = (categories) => {
             );
             newsBox.innerHTML = `
       <a href="${news.link}">
+            <div class="mb-2"><img class='rounded-md h-full object-cover' src="${news.image.srcset[8].url}" alt=""></div>
             <p class="text-sm text-red-300">${news.time}</p>
-            <h4 class="text-2xl font-semibold mt-4">${news.title}</h4>
+            <h4 class="text-2xl font-bold mt-4">${news.title}</h4>
           </a>
       `;
             newsContainer.append(newsBox);
@@ -82,6 +83,8 @@ const loadPopularNews = async () => {
     newsContainer.innerHTML = "";
 
     popularNews.forEach((news) => {
+      console.log(news);
+
       const newsBox = document.createElement("div");
       newsBox.classList.add(
         "p-4",
@@ -94,6 +97,7 @@ const loadPopularNews = async () => {
       );
       newsBox.innerHTML = `
       <a href="${news.link}">
+      <div class="mb-2"><img class='rounded-md h-full object-cover' src="$" alt=""></div>
       <p class="text-sm text-red-300">${new Date(
         news.scrapedAt
       ).toLocaleDateString("bn-BD", {
@@ -101,6 +105,7 @@ const loadPopularNews = async () => {
         month: "long",
         day: "numeric",
       })}</p>
+      <div></div>
       <h4 class="text-2xl font-semibold mt-4">${news.title}</h4>
       </a>
       `;
