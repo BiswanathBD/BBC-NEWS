@@ -135,12 +135,21 @@ let circleX = 0,
   circleY = 0;
 
 document.addEventListener("mousemove", (e) => {
+  hoverCircle.classList.remove("scale");
   mouseX = e.pageX;
   mouseY = e.pageY;
-  hoverCircle.style.opacity = "100";
+  hoverCircle.style.opacity = "1";
 });
 document.addEventListener("mouseleave", () => {
   hoverCircle.style.opacity = "0";
+});
+
+document.addEventListener("click", () => {
+  hoverCircle.classList.add("scale");
+  setTimeout(() => {
+    hoverCircle.classList.remove("scale");
+    hoverCircle.style.opacity = "1";
+  }, 500);
 });
 
 function move() {
