@@ -25,7 +25,7 @@ const loadNav = (categories) => {
 
       const newsContainer = getById("news-container");
       newsContainer.innerHTML = `
-<div class="text-red-700 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+<div class="text-slate-700 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
       const loadNewsCategory = async () => {
         try {
@@ -37,7 +37,7 @@ const loadNav = (categories) => {
           newsContainer.innerHTML = "";
           if (!newsByCategory || newsByCategory.length === 0) {
             newsContainer.innerHTML = `
-            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
+            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-300"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
             `;
             return;
           }
@@ -49,13 +49,13 @@ const loadNav = (categories) => {
               "transition-all",
               "hover:scale-[1.05]",
               "shadow-lg",
-              "shadow-red-100",
+              "shadow-slate-300",
               "bg-white"
             );
             newsBox.innerHTML = `
         <div id="${news.id}" onclick="showModal(${news.id})">
             <div class="mb-2"><img class='rounded-md h-full object-cover' src="${news.image.srcset[8].url}" alt=""></div>
-            <p class="text-sm text-red-300">${news.time}</p>
+            <p class="text-sm text-slate-500">${news.time}</p>
             <h4 class="text-2xl font-bold mt-4">${news.title}</h4>
           </div>
       `;
@@ -63,7 +63,7 @@ const loadNav = (categories) => {
           });
         } catch (error) {
           newsContainer.innerHTML = `
-            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
+            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-300"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
             `;
         }
       };
@@ -75,7 +75,7 @@ const loadNav = (categories) => {
 // Main page news load
 const newsContainer = getById("news-container");
 newsContainer.innerHTML = `
-<div class="text-red-700 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+<div class="text-slate-700 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
 
 const loadNews = async () => {
@@ -96,7 +96,7 @@ const loadNews = async () => {
         "transition-all",
         "hover:scale-[1.03]",
         "shadow-lg",
-        "shadow-red-100",
+        "shadow-slate-300",
         "bg-white",
         "cursor-pointer"
       );
@@ -105,14 +105,13 @@ const loadNews = async () => {
       <div class="mb-2"><img class='rounded-md h-full object-cover' src="${
         news.image.srcset[8].url
       }" alt=""></div>
-      <p class="text-sm text-red-300">${new Date(
+      <p class="text-sm text-slate-500">${new Date(
         news.scrapedAt
       ).toLocaleDateString("bn-BD", {
         year: "numeric",
         month: "long",
         day: "numeric",
       })}</p>
-      <div></div>
       <h4 class="text-2xl font-semibold mt-4">${news.title}</h4>
       </div>
       `;
@@ -120,7 +119,7 @@ const loadNews = async () => {
     });
   } catch (error) {
     newsContainer.innerHTML = `
-            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
+            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-300"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
             `;
   }
 };
@@ -132,7 +131,7 @@ const showMenu = () => {
   const navItems = document.querySelectorAll("#nav li");
   navItems.forEach((navItem) => {
     navItem.classList.toggle("hover:border-l-4");
-    navItem.classList.toggle("border-red-700");
+    navItem.classList.toggle("border-slate-700");
     navItem.classList.add("md:border-none");
   });
   nav.classList.toggle("pointer-events-none");
@@ -188,18 +187,20 @@ const showModal = async (news) => {
     if (newsDetails) {
       modalNewsContainer.innerHTML = `
       <div class="noto-serif">
-      <h4 class="text-2xl font-bold mt-4">${newsDetails.title}</h4>
+      <h4 class="text-2xl font-bold">${newsDetails.title}</h4>
       <img class='rounded-md my-4' src="${newsDetails.images[2].url}" alt="">
       <p>${newsDetails.content.join(" ")}</p>
       </div>
       `;
     } else {
       modalNewsContainer.innerHTML = `
-      <div class="text-center my-10 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> Details not found</div>
+      <div class="text-center mt-20 mb-10 text-xl text-gray-400"><span class="text-red-300"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> Details not found</div>
       `;
     }
   } catch (error) {
-    console.log(error);
+    modalNewsContainer.innerHTML = `
+      <div class="text-center mt-20 mb-10 text-xl text-gray-400"><span class="text-red-300"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> Details not found</div>
+      `;
   }
   newsDetailsModal.showModal();
 };

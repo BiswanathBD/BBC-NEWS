@@ -29,12 +29,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
     <style>
-      .logo span {
-        padding: 0px 7px;
-        background-color: white;
-        margin-right: 5px;
-        color: #b91c1c;
-        font-size: 20px;
+      body {
+        scroll-behavior: smooth;
       }
       .noto-serif {
         font-family: "Noto Serif Bengali", serif;
@@ -47,7 +43,7 @@
         width: 0%;
         height: 6px;
         border-radius: 10px 10px 0 0;
-        background-color: #b91c1c;
+        background-color: #334155;
         margin-top: 6px;
         margin-bottom: -24px;
         transition: all 0.1s ease;
@@ -64,18 +60,12 @@
           display: none;
         }
       }
-      footer span {
-        padding: 0px 16px;
-        background-color: white;
-        margin-right: 10px;
-        color: #dc2626;
-        font-size: 40px;
-      }
       #hover-circle {
         position: absolute;
         width: 20px;
         height: 20px;
-        background: rgba(255, 0, 0, 0.25);
+        background: #3341556e;
+        filter: blur(2px);
         border-radius: 50%;
         pointer-events: none;
         z-index: 100;
@@ -91,12 +81,17 @@
   </head>
   <body>
     <nav>
-      <div class="bg-red-700 px-4 md:px-10 lg:px-20">
+      <div class="bg-slate-700 px-4 md:px-10 lg:px-20">
         <div
-          class="logo container mx-auto text-2xl font-bold py-2 text-white flex justify-between items-center"
+          class="logo container mx-auto text-4xl font-bold py-4 text-white flex justify-between items-center"
         >
-          <a href="#"
-            ><p><span>B</span><span>B</span><span>C</span>NEWS</p></a
+          <a href="#" class="-mt-2"
+            ><p>
+              <span class="text-slate-400 font-extrabold">P</span>ress<span
+                class="text-slate-400 font-extrabold"
+                >.BD</span
+              >
+            </p></a
           >
           <p class="md:hidden">
             <i onclick="showMenu()" id="menu-bar" class="fa-solid fa-bars"></i>
@@ -105,11 +100,11 @@
       </div>
       <ul
         id="nav"
-        class="container mx-auto absolute md:static opacity-0 md:opacity-100 translate-y-[-12px] md:translate-y-[-8px] pointer-events-none md:pointer-events-auto px-4 md:px-10 lg:px-20 md:flex gap-4 lg:gap-8 text-xl mt-2 noto-serif bg-white rounded-b-xl md:rounded-none transition-all"
+        class="container mx-auto absolute md:static opacity-0 md:opacity-100 translate-y-[-12px] md:translate-y-[-8px] pointer-events-none md:pointer-events-auto px-4 md:px-10 lg:px-20 md:flex gap-4 md:gap-8 text-xl mt-2 noto-serif bg-white rounded-b-xl md:rounded-none transition-all shadow-xl shadow-slate-400 md:shadow-none"
       ></ul>
     </nav>
 
-    <main class="bg-red-50 pt-4 pb-20">
+    <main class="bg-slate-100 pt-4 pb-20">
       <section class="container mx-auto px-4 md:px-10 lg:px-20 noto-serif">
         <div
           id="news-container"
@@ -120,12 +115,17 @@
       </section>
     </main>
 
-    <footer class="bg-red-700 px-4 md:px-10 lg:px-20 grid md:grid-cols-2">
+    <footer class="bg-slate-700 px-4 md:px-10 lg:px-20 grid md:grid-cols-2">
       <div
-        class="container mx-auto text-5xl font-bold py-4 text-white flex justify-between items-center"
+        class="container mx-auto text-6xl font-bold py-4 text-white flex justify-between items-center"
       >
-        <a href="#"
-          ><p><span>B</span><span>B</span><span>C</span>NEWS</p></a
+        <a href="#" class="flex items-center"
+          ><p>
+            <span class="text-slate-400 font-extrabold">P</span>ress<span
+              class="text-slate-400 font-extrabold"
+              >.BD</span
+            >
+          </p></a
         >
       </div>
       <div class="text-white py-10 grid gap-4 md:text-right">
@@ -148,10 +148,10 @@
       <div class="modal-box flex flex-col">
         <div id="modalNewsContainer" class="flex-1 overflow-y-auto"></div>
 
-        <div class="modal-action sticky bottom-0 bg-white pt-2">
+        <div class="modal-action sticky bottom-0">
           <form method="dialog">
             <button
-              class="bg-red-700 px-4 py-2 rounded-full text-sm font-semibold text-white"
+              class="bg-slate-600 px-4 py-2 rounded-full text-sm font-semibold text-white"
             >
               Close
             </button>
