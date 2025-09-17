@@ -110,7 +110,7 @@
     </nav>
 
     <main class="bg-red-50 pt-4 pb-20">
-      <section class="px-4 md:px-10 lg:px-20 noto-serif">
+      <section class="container mx-auto px-4 md:px-10 lg:px-20 noto-serif">
         <div
           id="news-container"
           class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center"
@@ -141,7 +141,24 @@
     </footer>
 
     <!-- mouse move hover -->
-    <div id="hover-circle"></div>
+    <div id="hover-circle" class="hidden md:block"></div>
+
+    <!-- Open the modal using ID.showModal() method -->
+    <dialog id="newsDetailsModal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box flex flex-col">
+        <div id="modalNewsContainer" class="flex-1 overflow-y-auto"></div>
+
+        <div class="modal-action sticky bottom-0 bg-white pt-2">
+          <form method="dialog">
+            <button
+              class="bg-red-600 px-4 py-2 rounded-full text-sm font-semibold text-white"
+            >
+              Close
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
 
     <script src="./index.js"></script>
   </body>

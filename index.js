@@ -53,16 +53,18 @@ const loadNav = (categories) => {
               "bg-white"
             );
             newsBox.innerHTML = `
-      <a href="${news.link}">
+        <div id="${news.id}" onclick="showModal(${news.id})">
             <div class="mb-2"><img class='rounded-md h-full object-cover' src="${news.image.srcset[8].url}" alt=""></div>
             <p class="text-sm text-red-300">${news.time}</p>
             <h4 class="text-2xl font-bold mt-4">${news.title}</h4>
-          </a>
+          </div>
       `;
             newsContainer.append(newsBox);
           });
         } catch (error) {
-          console.error("Error fetching news:", error);
+          newsContainer.innerHTML = `
+            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
+            `;
         }
       };
       loadNewsCategory();
@@ -95,10 +97,11 @@ const loadNews = async () => {
         "hover:scale-[1.03]",
         "shadow-lg",
         "shadow-red-100",
-        "bg-white"
+        "bg-white",
+        "cursor-pointer"
       );
       newsBox.innerHTML = `
-      <a href="${news.link}">
+      <div id="${news.id}" onclick="showModal(${news.id})">
       <div class="mb-2"><img class='rounded-md h-full object-cover' src="${
         news.image.srcset[8].url
       }" alt=""></div>
@@ -111,12 +114,14 @@ const loadNews = async () => {
       })}</p>
       <div></div>
       <h4 class="text-2xl font-semibold mt-4">${news.title}</h4>
-      </a>
+      </div>
       `;
       newsContainer.append(newsBox);
     });
   } catch (error) {
-    console.error("Error fetching news:", error);
+    newsContainer.innerHTML = `
+            <div class="col-span-full text-center my-20 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> No data found</div>
+            `;
   }
 };
 loadNews();
@@ -169,3 +174,32 @@ function move() {
   requestAnimationFrame(move);
 }
 move();
+
+// news details modal
+const newsDetailsModal = getById("newsDetailsModal");
+const modalNewsContainer = getById("modalNewsContainer");
+const showModal = async (news) => {
+  const id = news.id;
+  try {
+    const res = await fetch(`https://news-api-fs.vercel.app/api/news/${id}`);
+    const data = await res.json();
+    const newsDetails = data.article;
+
+    if (newsDetails) {
+      modalNewsContainer.innerHTML = `
+      <div class="noto-serif">
+      <h4 class="text-2xl font-bold mt-4">${newsDetails.title}</h4>
+      <img class='rounded-md my-4' src="${newsDetails.images[2].url}" alt="">
+      <p>${newsDetails.content.join(" ")}</p>
+      </div>
+      `;
+    } else {
+      modalNewsContainer.innerHTML = `
+      <div class="text-center my-10 text-xl text-gray-400"><span class="text-red-400"><i class="fa-solid fa-triangle-exclamation text-2xl"></i></span> Details not found</div>
+      `;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  newsDetailsModal.showModal();
+};
