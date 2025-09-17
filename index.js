@@ -25,7 +25,7 @@ const loadNav = (categories) => {
 
       const newsContainer = getById("news-container");
       newsContainer.innerHTML = `
-<div class="text-slate-700 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+<div class="text-sky-500 mx-auto mt-16 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
       const loadNewsCategory = async () => {
         try {
@@ -55,7 +55,7 @@ const loadNav = (categories) => {
             newsBox.innerHTML = `
         <div id="${news.id}" onclick="showModal(${news.id})">
             <div class="mb-2"><img class='rounded-md h-full object-cover' src="${news.image.srcset[8].url}" alt=""></div>
-            <p class="text-sm text-slate-500">${news.time}</p>
+            <p class="text-sm text-gray-500">${news.time}</p>
             <h4 class="text-2xl font-bold mt-4">${news.title}</h4>
           </div>
       `;
@@ -75,7 +75,7 @@ const loadNav = (categories) => {
 // Main page news load
 const newsContainer = getById("news-container");
 newsContainer.innerHTML = `
-<div class="text-slate-700 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
+<div class="text-sky-500 mx-auto my-20 col-span-full"><span class="loading loading-ring loading-xl w-20"></span></div>
 `;
 
 const loadNews = async () => {
@@ -105,7 +105,7 @@ const loadNews = async () => {
       <div class="mb-2"><img class='rounded-md h-full object-cover' src="${
         news.image.srcset[8].url
       }" alt=""></div>
-      <p class="text-sm text-slate-500">${new Date(
+      <p class="text-sm text-gray-500">${new Date(
         news.scrapedAt
       ).toLocaleDateString("bn-BD", {
         year: "numeric",
