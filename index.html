@@ -39,18 +39,19 @@
       #nav li::after {
         content: "";
         display: block;
-        margin: 0 auto;
-        width: 0%;
-        height: 6px;
-        border-radius: 10px 10px 0 0;
-        background-color: #334155;
+        margin-left: -5px;
         margin-top: 6px;
+        width: calc(100% + 10px);
+        height: 6px;
+        border-radius: 5px 5px 0 0;
+        background: linear-gradient(to right, #678bc5, #0ea5e9);
         margin-bottom: -24px;
-        transition: all 0.1s ease;
+        opacity: 0;
+        transition: all 0.3s ease;
       }
       #nav li:hover::after,
       #nav li.active::after {
-        width: 100%;
+        opacity: 1;
       }
       @media (max-width: 768px) {
         #nav li {
@@ -60,11 +61,12 @@
           display: none;
         }
       }
+
       #hover-circle {
         position: absolute;
         width: 20px;
         height: 20px;
-        background: #3341556e;
+        background: #0ea4e988;
         filter: blur(2px);
         border-radius: 50%;
         pointer-events: none;
@@ -81,18 +83,20 @@
   </head>
   <body>
     <nav>
-      <div class="bg-slate-700 px-4 md:px-10 lg:px-20">
+      <div
+        class="bg-gradient-to-r from-slate-800 to-sky-500 px-4 md:px-10 lg:px-20"
+      >
         <div
           class="logo container mx-auto text-4xl font-bold py-4 text-white flex justify-between items-center"
         >
-          <a href="#" class="-mt-2"
+          <a href="#" class="mb-2"
             ><p>
-              <span class="text-slate-400 font-extrabold">P</span>ress<span
-                class="text-slate-400 font-extrabold"
+              <span class="text-sky-500 font-extrabold">P</span>ress<span
+                class="text-sky-500 font-extrabold"
                 >.BD</span
               >
-            </p></a
-          >
+            </p>
+          </a>
           <p class="md:hidden">
             <i onclick="showMenu()" id="menu-bar" class="fa-solid fa-bars"></i>
           </p>
@@ -100,11 +104,11 @@
       </div>
       <ul
         id="nav"
-        class="container mx-auto absolute md:static opacity-0 md:opacity-100 translate-y-[-12px] md:translate-y-[-8px] pointer-events-none md:pointer-events-auto px-4 md:px-10 lg:px-20 md:flex gap-4 md:gap-8 text-xl mt-2 noto-serif bg-white rounded-b-xl md:rounded-none transition-all shadow-xl shadow-slate-400 md:shadow-none"
+        class="container mx-auto text-slate-600 absolute md:static opacity-0 md:opacity-100 translate-y-[-12px] md:translate-y-[-8px] pointer-events-none md:pointer-events-auto px-4 md:px-10 lg:px-20 md:flex gap-4 md:gap-8 text-xl mt-2 noto-serif bg-white rounded-b-xl md:rounded-none transition-all shadow-xl shadow-slate-400 md:shadow-none"
       ></ul>
     </nav>
 
-    <main class="bg-slate-100 pt-4 pb-20">
+    <main class="bg-gradient-to-r from-slate-200 to-sky-100 pt-4 pb-20">
       <section class="container mx-auto px-4 md:px-10 lg:px-20 noto-serif">
         <div
           id="news-container"
@@ -115,14 +119,16 @@
       </section>
     </main>
 
-    <footer class="bg-slate-700 px-4 md:px-10 lg:px-20 grid md:grid-cols-2">
+    <footer
+      class="bg-gradient-to-r from-slate-800 to-sky-500 px-4 md:px-10 lg:px-20 grid md:grid-cols-2"
+    >
       <div
-        class="container mx-auto text-6xl font-bold py-4 text-white flex justify-between items-center"
+        class="container mx-auto text-5xl font-bold py-4 text-white flex justify-between items-center"
       >
         <a href="#" class="flex items-center"
           ><p>
-            <span class="text-slate-400 font-extrabold">P</span>ress<span
-              class="text-slate-400 font-extrabold"
+            <span class="text-sky-500 font-extrabold">P</span>ress<span
+              class="text-sky-500 font-extrabold"
               >.BD</span
             >
           </p></a
@@ -151,7 +157,7 @@
         <div class="modal-action sticky bottom-0">
           <form method="dialog">
             <button
-              class="bg-slate-600 px-4 py-2 rounded-full text-sm font-semibold text-white"
+              class="bg-gradient-to-r from-sky-500 to-sky-300 px-4 py-2 rounded-full text-sm font-semibold text-white"
             >
               Close
             </button>

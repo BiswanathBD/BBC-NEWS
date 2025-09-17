@@ -13,15 +13,15 @@ const loadNav = (categories) => {
     navItem.innerText = `${category.title}`;
     nav.append(navItem);
     const firstItem = nav.querySelector("li");
-    firstItem.classList.add("active");
+    firstItem.classList.add("active", "text-sky-500");
 
     navItem.addEventListener("click", function () {
       showMenu();
       const selectedCategories = document.querySelectorAll("#nav li");
       selectedCategories.forEach((nav) => {
-        nav.classList.remove("active");
+        nav.classList.remove("active", "text-sky-500");
       });
-      navItem.classList.add("active");
+      navItem.classList.add("active", "text-sky-500");
 
       const newsContainer = getById("news-container");
       newsContainer.innerHTML = `
